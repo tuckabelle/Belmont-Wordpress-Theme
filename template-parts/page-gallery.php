@@ -1,6 +1,7 @@
 <?php /* Template Name: Gallery*/ ?>
 
-<div class="container">
+<div class="container">\
+<h1> </h1>
     <div id="galleryContent">
             
         <?php 
