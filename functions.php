@@ -117,6 +117,7 @@ function belmont_scripts()
     wp_register_style( "bootstrap", get_template_directory_uri() . "/css/bootstrap.min.css", array(), "1.0", "all" );
     wp_enqueue_style( 'bootstrap' );
     
+
     
     //Add Miso font
     wp_enqueue_style( 'belmont-local-fonts', get_template_directory_uri() . '/fonts/Miso.css' );
@@ -152,23 +153,19 @@ function belmont_scripts()
     wp_enqueue_script( 'belmont-magnific_init_script' );
     
     
-    
-    
     wp_enqueue_style( 'belmont-style', get_stylesheet_uri() );
     
     
     wp_enqueue_script( 'belmont-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
     
     
-    wp_enqueue_script( 'belmont-js', get_template_directory_uri() . '/js/functions.js', array(
-         'jquery' 
-    ), true );
+    wp_enqueue_script( 'belmont-jsfunctions', get_template_directory_uri() . '/js/functions.js', array( 'jquery' ), '20120206', true );
     
     
     //Smooth scroll
-    wp_enqueue_script( 'belmont-onepagenav', get_template_directory_uri() . '/js/jquery.nav.js', array(
-         'jquery' 
-    ), '3.0.0', true );
+   // wp_enqueue_script( 'belmont-onepagenav', get_template_directory_uri() . '/js/jquery.nav.js', array(
+     //    'jquery' 
+    //), '3.0.0', true );
     
     
     
@@ -206,8 +203,19 @@ function custom_theme_features()
 }
 add_action( 'after_setup_theme', 'custom_theme_features' );
 
+
+/**
+ * Get the bootstrap!
+ */
+if ( file_exists(  get_template_directory() . '/inc/Custom-Meta-Boxes/init.php' ) ) {
+  require_once  get_template_directory() . '/inc/Custom-Meta-Boxes/init.php';
+} elseif ( file_exists(  get_template_directory() . '/inc/Custom-Meta-Boxes/init.php' ) ) {
+  require_once get_template_directory() . '/inc/Custom-Meta-Boxes/init.php';
+}
+
 // Add to functions.php.
-require_once( get_template_directory() . '/inc/Custom-Meta-Boxes/custom-meta-boxes.php' );
+require_once( get_template_directory() . '/inc/Custom-Meta-Boxes/example-functions2.php' );
+
 
 /**
  * Custom template tags for this theme.
@@ -229,18 +237,6 @@ require get_template_directory() . '/inc/customizer.php';
  */
 require get_template_directory() . '/inc/jetpack.php';
 
-
-/**
- * Include admin-init.php
- *
- * File responsible for all admin relevant activity E.g. Settings & Metaboxes etc.
- */
-
-//if ( file_exists( get_template_directory() .'/inc/titanframework/admin-init.php') ) {
-
-// require_once( get_template_directory() .'/inc/titanframework/admin-init.php' );
-
-//}
 
 
 /* Add default pages on theme install */
